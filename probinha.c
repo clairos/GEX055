@@ -1,5 +1,5 @@
 #include <stdio.h>
-//#include <math. h> 
+#include <math.h> 
 
 int comb(int n, int x, int ene, int xis){
     //começo da conta de Combinação
@@ -29,67 +29,59 @@ int comb(int n, int x, int ene, int xis){
     printf(" = %d\n", com);
 
     return com;
-    return 0;    
 }
 
-int pex(float p, float P, int xis){
+int pex(double p, int xis){
+    double expo;
+
+    expo = pow(p, xis);
     
-    int seq;
-    float expo;
-    expo = P;
-    for(seq = 0; seq < (xis - 1); seq++){
-        expo *= P;
-    }
-        printf("\np ^ x = %.5f\n", expo);
-        return expo;    
-        return 0;
+    return expo;
 }
 
-int qnx(float p, float P, int xis, int ene, int n){
-    int seq, nx, expNX;
-    float baseQ, res;
-    baseQ = 1 - P;
-    expNX = n - xis;
-    res = baseQ;
-    printf("%.2f ^ %d - %d = ", baseQ, n, xis);
-    for(seq = 0; seq < (expNX - 1); seq++){
-        res *= baseQ;
-    }
-    printf("%f", res);
-    return baseQ;
+int qnx(double p, int xis, int ene){
+    int expNX;
+    double q, res;
+
+    q = 1 - p;
+    expNX = ene - xis;
+
+    res = pow(q, expNX);
+    
     return res;
-    return 0;
 }  
 
 int main(){
  
-    int ene, xis, xiss, nx, n, x, combinacao;
-    float p, P, PEX, QNX, Dis, baseq;
+    int ene, xis, n, x, combinacao;
+    double p, PEX, QNX, q, resposta;
 
     //pedindo os valores de n, p e x
     printf("Digite o número de observações: \n");
     scanf("%d", &ene);
-    printf("Digite a probabilidade de sucesso: \n");
-    scanf("%f", &p);
     printf("Digite o número especificado de sucesso: \n");
     scanf("%d", &xis);
+    printf("Digite a probabilidade de sucesso: \n");
+    scanf("%f", &p);
+
     n = ene;
     x = xis;
-    P = p;
-    baseq = 1 - P;
-    //chamando funçao combinação
+    q = 1 - p;
+
+    //chamando função combinação
     combinacao = comb(n, x, ene, xis);
+    // printf("%d", combinacao);
     //chamando função de calcular o P elevado a X
-    PEX = pex(p, P, xis);
+    PEX = pex(p, xis);
+    // printf("%.2lf", PEX);
     //chamando função de calcular o q elavado a n - x
-    QNX = qnx(p, P, xis, ene, n);
+    QNX = qnx(p, xis, ene);
+    // printf("%.2lf", QNX);
 
-    //função para calcular resultado final
-
-    float resposta;
+    //resultado final
     resposta = combinacao * PEX * QNX;
     
-    printf("\nP(%d) = %d * ( %f ^ %d ) * ( %f ^ %d - %d ) = %f", x, combinacao, p, xis, baseq, ene, xis, resposta);
+    printf("\nP(%d) = %d * ( %.2lf ^ %d ) * ( %.2lf ^ %d - %d ) = %.2lf", x, combinacao, p, xis, q, ene, xis, resposta);
 
     return 0;
 }
