@@ -56,9 +56,9 @@ int main(){
     double p, PEX, QNX, q, resposta, final;
 
     //pedindo os valores de n, p e x
-    printf("Digite o número de observações: \n");
+    printf("Digite o numero de observacoes: \n");
     scanf("%d", &ene);
-    printf("lfigite o número especificado de sucesso: \n");
+    printf("Digite o numero especificado de sucesso: \n");
     scanf("%d", &xis);
     printf("Digite a probabilidade de sucesso: \n");
     scanf("%lf", &p);
