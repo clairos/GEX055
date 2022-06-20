@@ -23,15 +23,15 @@ int comb(int n, int x, int ene, int xis){
     com = fatN / (fatNX * fatX);
     
     
-    printf("\nC %d, %d = ( %d! )\n", ene, xis, ene);
-    printf("----------------------- \n");
-    printf("( %d )! %d!\n", enexis, xis);
+    printf("\nC %d, %d =  ( %d! )\n", ene, xis, ene);
+    printf("         ---------\n");
+    printf("         ( %d )! %d!\n", enexis, xis);
     printf(" = %d\n", com);
 
     return com;
 }
 
-int pex(double p, int xis){
+double pex(double p, int xis){
     double expo;
 
     expo = pow(p, xis);
@@ -39,7 +39,7 @@ int pex(double p, int xis){
     return expo;
 }
 
-int qnx(double p, int xis, int ene){
+double qnx(double p, int xis, int ene){
     int expNX;
     double q, res;
 
@@ -52,17 +52,16 @@ int qnx(double p, int xis, int ene){
 }  
 
 int main(){
- 
     int ene, xis, n, x, combinacao;
-    double p, PEX, QNX, q, resposta;
+    double p, PEX, QNX, q, resposta, final;
 
     //pedindo os valores de n, p e x
     printf("Digite o número de observações: \n");
     scanf("%d", &ene);
-    printf("Digite o número especificado de sucesso: \n");
+    printf("lfigite o número especificado de sucesso: \n");
     scanf("%d", &xis);
     printf("Digite a probabilidade de sucesso: \n");
-    scanf("%f", &p);
+    scanf("%lf", &p);
 
     n = ene;
     x = xis;
@@ -70,19 +69,17 @@ int main(){
 
     //chamando função combinação
     combinacao = comb(n, x, ene, xis);
-    // printf("%d", combinacao);
     //chamando função de calcular o P elevado a X
     PEX = pex(p, xis);
-    // printf("%.2lf", PEX);
     //chamando função de calcular o q elavado a n - x
     QNX = qnx(p, xis, ene);
-    // printf("%.2lf", QNX);
 
     //resultado final
-    resposta = combinacao * PEX * QNX;
+    resposta = (combinacao) * (PEX) * (QNX);
+    final = resposta*100;
     
-    printf("\nP(%d) = %d * ( %.2lf ^ %d ) * ( %.2lf ^ %d - %d ) = %.2lf", x, combinacao, p, xis, q, ene, xis, resposta);
+    printf("\nP(%d) = %d * ( %.2lf ^ %d ) * ( %.2lf ^ %d - %d ) = %.2lf\n", x, combinacao, p, xis, q, ene, xis, resposta);
+    printf("Resposta em porcentagem: %.2lf%%\n", final);
 
     return 0;
 }
-
