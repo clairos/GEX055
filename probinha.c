@@ -1,37 +1,40 @@
 #include <stdio.h>
 #include <math.h> 
 
-int comb(int n, int x, int ene, int xis){
+double comb(double n, double x, double ene, double xis){
     //começo da conta de Combinação
     //C n,x = ( n! )/ ( (n - x) * (x!) )
     
-    int nx, enexis, fatN, fatX, fatNX, com;
+    double nx, enexis, fatN, fatX, fatNX, com;
 
-    nx = ene - xis;
+    nx = n - x;
     enexis = nx;
+
+    //fatorial de n  
+    for(fatN = 1; n > 1; n--)
+        fatN = fatN * n; 
     
     //fatorial de x
     for(fatX = 1; x > 1; x--)
         fatX = fatX * x;
-    //fatorial de n  
-    for(fatN = 1; n > 1; n--)  
-        fatN = fatN * n;            
+
     //fatorial de n - x
     for(fatNX = 1; nx > 1; nx--)
         fatNX = fatNX * nx;
+
     //conta 
     com = fatN / (fatNX * fatX);
     
     
-    printf("\nC %d, %d =  ( %d! )\n", ene, xis, ene);
+    printf("\nC %.0lf, %.0lf =  ( %.0lf! )\n", ene, xis, ene);
     printf("         ---------\n");
-    printf("         ( %d )! %d!\n", enexis, xis);
-    printf(" = %d\n", com);
+    printf("         ( %.0lf )! %.0lf!\n", enexis, xis);
+    printf(" = %.0lf\n", com);
 
     return com;
 }
 
-double pex(double p, int xis){
+double pex(double p, double xis){
     double expo;
 
     expo = pow(p, xis);
@@ -39,9 +42,8 @@ double pex(double p, int xis){
     return expo;
 }
 
-double qnx(double p, int xis, int ene){
-    int expNX;
-    double q, res;
+double qnx(double p, double xis, double ene){
+    double expNX, q, res;
 
     q = 1 - p;
     expNX = ene - xis;
@@ -52,14 +54,13 @@ double qnx(double p, int xis, int ene){
 }  
 
 int main(){
-    int ene, xis, n, x, combinacao;
-    double p, PEX, QNX, q, resposta, final;
+    double ene, xis, n, x, p, PEX, QNX, q, combinacao, resposta, final;
 
     //pedindo os valores de n, p e x
     printf("Digite o numero de observacoes: \n");
-    scanf("%d", &ene);
+    scanf("%lf", &ene);
     printf("Digite o numero especificado de sucesso: \n");
-    scanf("%d", &xis);
+    scanf("%lf", &xis);
     printf("Digite a probabilidade de sucesso: \n");
     scanf("%lf", &p);
 
@@ -78,7 +79,7 @@ int main(){
     resposta = (combinacao) * (PEX) * (QNX);
     final = resposta*100;
     
-    printf("\nP(%d) = %d * ( %.2lf ^ %d ) * ( %.2lf ^ %d - %d ) = %.2lf\n", x, combinacao, p, xis, q, ene, xis, resposta);
+    printf("\nP(%.0lf) = %.0lf * ( %.2lf ^ %.0lf ) * ( %.2lf ^ %.0lf - %.0lf ) = %.4lf\n", x, combinacao, p, xis, q, ene, xis, resposta);
     printf("Resposta em porcentagem: %.2lf%%\n", final);
 
     return 0;
