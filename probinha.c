@@ -45,7 +45,7 @@ double qnx(double p, double xis, double ene){
     res = pow(q, expNX);
     
     return res;
-}  
+} 
 
 int main(){
     double ene, xis, n, x, p, PEX, QNX, q, combinacao, resposta, final;
